@@ -1,5 +1,7 @@
 # Agent Tweaks
 
+[![tests](https://github.com/tomjseery/agent-tweaks/actions/workflows/tests.yml/badge.svg)](https://github.com/tomjseery/agent-tweaks/actions/workflows/tests.yml)
+
 Small, optional quality-of-life improvements for AI coding agents.
 
 Agent Tweaks is a home for focused fixes that belong outside an agent's normal
