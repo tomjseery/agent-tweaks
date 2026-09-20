@@ -14,15 +14,17 @@ exactly what it changes.
 | Tweak | Linux | Windows | Purpose |
 | --- | --- | --- | --- |
 | Codex hold-to-dictate | [Supported](tweaks/linux/codex/hold-to-dictate/) | [Planned](tweaks/windows/codex/hold-to-dictate/) | Hold Space to dictate into the Codex CLI composer |
+| Session Restore | [Supported](tweaks/linux/session-restore/) | [Planned](tweaks/windows/session-restore/) | Reopen Codex and Claude sessions after a restart |
 
 ## Linux
 
-Codex hold-to-dictate is supported on Linux with PipeWire and a terminal that
-implements the required Kitty keyboard protocol.
+Linux currently supports Codex hold-to-dictate and Session Restore. Session
+Restore works with both Codex and Claude without agent hooks.
 
 ### 1. Install prerequisites on Arch Linux
 
-Codex CLI must already be installed. Install the remaining packages with:
+Codex CLI, Claude Code, or both must already be installed. Install the remaining
+packages for all current tweaks with:
 
 ```sh
 pkexec pacman -S --needed git python python-vosk pipewire-audio curl unzip
@@ -49,15 +51,22 @@ Or install only Codex hold-to-dictate:
 ./install.sh codex/hold-to-dictate
 ```
 
+Or install only Session Restore:
+
+```sh
+./install.sh session-restore
+```
+
 Use `./install.sh --list` to list supported targets. The installer checks the
-dependencies, downloads the small English speech model, and keeps the original
-Codex CLI available as `codex-real`.
+dependencies. Hold-to-dictate downloads its local English speech model and
+keeps the original Codex CLI available as `codex-real`. Session Restore adds a
+silent user service and a **Restore Sessions** desktop shortcut.
 
 ### After a restart
 
-Nothing needs to be reinstalled. Open a supported terminal and run `codex`.
-The installation, local speech model, and shell hook persist, and normal
-dictation does not require internet access.
+Nothing needs to be reinstalled. Open a supported terminal and run `codex`, or
+use the **Restore Sessions** desktop icon to reopen the agents that were active
+before shutdown. The installations and local state persist.
 
 ### Uninstall
 
@@ -73,14 +82,19 @@ Or remove only Codex hold-to-dictate:
 ./uninstall.sh codex/hold-to-dictate
 ```
 
-See the [Linux tweak README](tweaks/linux/codex/hold-to-dictate/) for controls and
-troubleshooting.
+Or remove only Session Restore:
+
+```sh
+./uninstall.sh session-restore
+```
+
+See the individual Linux tweak READMEs for controls and troubleshooting.
 
 ## Windows
 
-Native Windows hold-to-dictate is planned but not implemented yet. The shared
-Python behavior and root PowerShell dispatchers are ready; the native console
-and microphone backend still needs to be implemented and tested on Windows.
+Native Windows implementations of both tweaks are planned but not implemented
+yet. Their shared Python behavior and root PowerShell dispatchers are ready;
+the native backends still need to be implemented and tested on Windows.
 
 ### 1. Clone the repository
 
@@ -101,6 +115,12 @@ Or install only Codex hold-to-dictate:
 
 ```powershell
 .\install.ps1 codex/hold-to-dictate
+```
+
+The future Session Restore target will be:
+
+```powershell
+.\install.ps1 session-restore
 ```
 
 Until the Windows backend is finished, these commands safely report that no
@@ -135,8 +155,8 @@ you plan to pull updates or contribute.
   available.
 - Honest compatibility: an operating system is marked supported only after an
   implementation has been tested there.
-- Preserve user configuration: installers add small managed hooks instead of
-  replacing existing configuration files.
+- Preserve user configuration: installers add only the small managed files
+  they need instead of replacing existing configuration files.
 
 ## Repository layout
 
@@ -149,19 +169,23 @@ tweaks/
 ├── linux/
 │   ├── codex/
 │   │   └── hold-to-dictate/
-│   └── claude/
+│   ├── claude/
+│   └── session-restore/
 ├── windows/
 │   ├── codex/
 │   │   └── hold-to-dictate/
-│   └── claude/
+│   ├── claude/
+│   └── session-restore/
 └── shared/
     ├── codex/
     │   └── hold-to-dictate/
-    └── claude/
+    ├── claude/
+    └── session-restore/
 ```
 
-Choose the operating system first, then the agent and tweak. Reusable code lives
-under `tweaks/shared/` using the same agent-and-tweak hierarchy.
+Choose the operating system first, then the agent and tweak. Cross-agent tweaks
+such as Session Restore live directly under the operating-system folder.
+Reusable platform-neutral code lives under `tweaks/shared/`.
 
 ## Contributing
 

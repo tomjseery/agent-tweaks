@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Restore Sessions
+Comment=Reopen the Codex and Claude sessions from your last workspace
+Exec=@EXECUTABLE@ restore --gui
+Icon=utilities-terminal
+Terminal=false
+Categories=Development;
+StartupNotify=false

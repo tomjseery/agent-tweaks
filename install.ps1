@@ -22,4 +22,4 @@ if ($Target.Count -gt 0) {
 }
 
 Write-Host 'No stable Windows tweaks are available yet.'
-Write-Host 'The Windows hold-to-dictate backend is planned but not implemented.'
+Write-Host 'The Windows hold-to-dictate and Session Restore backends are planned but not implemented.'

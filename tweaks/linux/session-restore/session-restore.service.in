@@ -1,0 +1,14 @@
+[Unit]
+Description=Track open Codex and Claude sessions for Session Restore
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=@EXECUTABLE@ watch
+UMask=0077
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=default.target

@@ -11,19 +11,23 @@ Uninstall Agent Tweaks from this platform.
 
 Targets:
   codex/hold-to-dictate  Hold Space to dictate into the Codex CLI
+  session-restore        Restore Codex and Claude sessions after a restart
 
 With no arguments, all installed tweaks managed by this repository are removed.
 EOF
 }
 
 list_targets() {
-    printf '%s\n' 'codex/hold-to-dictate'
+    printf '%s\n' 'session-restore' 'codex/hold-to-dictate'
 }
 
 uninstall_target() {
     case "$1" in
         codex/hold-to-dictate)
             "$repo_root/tweaks/linux/codex/hold-to-dictate/uninstall.sh"
+            ;;
+        session-restore)
+            "$repo_root/tweaks/linux/session-restore/uninstall.sh"
             ;;
         *)
             printf 'error: unknown or unsupported target: %s\n' "$1" >&2

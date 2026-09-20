@@ -20,10 +20,18 @@ jobs:
           python -m py_compile
           tweaks/shared/codex/hold-to-dictate/dictation_core.py
           tweaks/linux/codex/hold-to-dictate/codex_hold_to_dictate.py
+          tweaks/shared/session-restore/session_restore_core.py
+          tweaks/linux/session-restore/session_restore.py
       - name: Test
-        run: python -m unittest discover -s tweaks/linux/codex/hold-to-dictate/tests -v
+        run: |
+          python -m unittest discover -s tweaks/linux/codex/hold-to-dictate/tests -v
+          python -m unittest discover -s tweaks/shared/session-restore/tests -v
+          python -m unittest discover -s tweaks/linux/session-restore/tests -v
       - name: Check shell entry points
-        run: bash -n install.sh uninstall.sh tweaks/linux/codex/hold-to-dictate/*.sh
+        run: >-
+          bash -n install.sh uninstall.sh
+          tweaks/linux/codex/hold-to-dictate/*.sh
+          tweaks/linux/session-restore/*.sh
 
   windows-entry-points:
     runs-on: windows-latest
