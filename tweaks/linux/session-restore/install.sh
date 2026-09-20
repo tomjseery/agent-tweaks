@@ -14,10 +14,40 @@ executable="$install_dir/session-restore"
 service_dir="$config_home/systemd/user"
 application_dir="$data_home/applications"
 desktop_dir="${XDG_DESKTOP_DIR:-$HOME/Desktop}"
+short_command_installed=false
 
 fail() {
     printf 'error: %s\n' "$*" >&2
     exit 1
+}
+
+link_is_managed() {
+    local link_path="$1"
+    [[ -L "$link_path" ]] && [[ "$(readlink -- "$link_path")" == "$executable" ]]
+}
+
+install_command_link() {
+    local command_name="$1"
+    local required="$2"
+    local link_path="$bin_home/$command_name"
+    local existing_command
+
+    if link_is_managed "$link_path"; then
+        ln -sfn -- "$executable" "$link_path"
+        return 0
+    fi
+
+    existing_command="$(command -v -- "$command_name" 2>/dev/null || true)"
+    if [[ -e "$link_path" || -L "$link_path" || -n "$existing_command" ]]; then
+        if [[ "$required" == true ]]; then
+            fail "command already exists and is not managed here: ${existing_command:-$link_path}"
+        fi
+        printf 'warning: sr already exists at %s; use session-restore instead.\n' \
+            "${existing_command:-$link_path}" >&2
+        return 1
+    fi
+
+    ln -s -- "$executable" "$link_path"
 }
 
 [[ -f "$source_file" ]] || fail "implementation not found: $source_file"
@@ -36,8 +66,10 @@ fi
 install -Dm755 -- "$source_file" "$executable"
 install -Dm644 -- "$shared_file" "$install_dir/session_restore_core.py"
 mkdir -p -- "$bin_home"
-ln -sfn -- "$executable" "$bin_home/session-restore"
-ln -sfn -- "$executable" "$bin_home/sr"
+install_command_link session-restore true
+if install_command_link sr false; then
+    short_command_installed=true
+fi
 
 mkdir -p -- "$service_dir" "$application_dir" "$desktop_dir"
 sed "s|@EXECUTABLE@|$executable|g" "$service_template" \
@@ -57,4 +89,8 @@ fi
 
 printf '\nInstalled Session Restore.\n'
 printf 'Tracking runs silently in the background without agent hooks.\n'
-printf 'Use the Restore Sessions desktop icon or run: sr restore\n'
+if [[ "$short_command_installed" == true ]]; then
+    printf 'Use the Restore Sessions desktop icon or run: sr restore\n'
+else
+    printf 'Use the Restore Sessions desktop icon or run: session-restore restore\n'
+fi

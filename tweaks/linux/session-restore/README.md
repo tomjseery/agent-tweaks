@@ -35,7 +35,9 @@ Sessions** to both the KDE application menu and desktop.
 ## Commands
 
 `sr` is the short global command; `session-restore` remains available as its
-descriptive equivalent.
+descriptive equivalent. If another program already provides `sr`, the installer
+leaves it untouched and tells you to use `session-restore` instead. The
+uninstaller only removes command links created by Session Restore.
 
 ```sh
 sr list
