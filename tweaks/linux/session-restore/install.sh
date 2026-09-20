@@ -37,6 +37,7 @@ install -Dm755 -- "$source_file" "$executable"
 install -Dm644 -- "$shared_file" "$install_dir/session_restore_core.py"
 mkdir -p -- "$bin_home"
 ln -sfn -- "$executable" "$bin_home/session-restore"
+ln -sfn -- "$executable" "$bin_home/sr"
 
 mkdir -p -- "$service_dir" "$application_dir" "$desktop_dir"
 sed "s|@EXECUTABLE@|$executable|g" "$service_template" \
@@ -56,4 +57,4 @@ fi
 
 printf '\nInstalled Session Restore.\n'
 printf 'Tracking runs silently in the background without agent hooks.\n'
-printf 'Use the Restore Sessions desktop icon or run: session-restore restore\n'
+printf 'Use the Restore Sessions desktop icon or run: sr restore\n'

@@ -60,7 +60,8 @@ Or install only Session Restore:
 Use `./install.sh --list` to list supported targets. The installer checks the
 dependencies. Hold-to-dictate downloads its local English speech model and
 keeps the original Codex CLI available as `codex-real`. Session Restore adds a
-silent user service and a **Restore Sessions** desktop shortcut.
+silent user service, a **Restore Sessions** desktop shortcut, and the global
+short command `sr`.
 
 ### After a restart
 

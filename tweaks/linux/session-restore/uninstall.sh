@@ -13,6 +13,7 @@ systemctl --user daemon-reload >/dev/null 2>&1 || true
 
 rm -f -- \
     "$bin_home/session-restore" \
+    "$bin_home/sr" \
     "$data_home/applications/session-restore.desktop" \
     "$desktop_dir/Restore Sessions.desktop"
 rm -rf -- \

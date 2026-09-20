@@ -34,13 +34,16 @@ Sessions** to both the KDE application menu and desktop.
 
 ## Commands
 
+`sr` is the short global command; `session-restore` remains available as its
+descriptive equivalent.
+
 ```sh
-session-restore list
-session-restore snapshot
-session-restore restore
-session-restore restore --dry-run
-session-restore doctor
-session-restore clear
+sr list
+sr snapshot
+sr restore
+sr restore --dry-run
+sr doctor
+sr clear
 ```
 
 The service normally handles snapshots automatically. `snapshot` exists for
