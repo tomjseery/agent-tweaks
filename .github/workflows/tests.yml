@@ -18,7 +18,7 @@ jobs:
       - name: Compile
         run: >-
           python -m py_compile
-          tweaks/codex-hold-to-dictate/dictation_core.py
-          tweaks/codex-hold-to-dictate/linux/codex_hold_to_dictate.py
+          tweaks/codex/hold-to-dictate/dictation_core.py
+          tweaks/codex/hold-to-dictate/linux/codex_hold_to_dictate.py
       - name: Test
-        run: python -m unittest discover -s tweaks/codex-hold-to-dictate/tests -v
+        run: python -m unittest discover -s tweaks/codex/hold-to-dictate/tests -v

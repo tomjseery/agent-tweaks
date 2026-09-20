@@ -13,18 +13,37 @@ exactly what it changes.
 
 | Tweak | Linux | Windows | Purpose |
 | --- | --- | --- | --- |
-| [Codex hold-to-dictate](tweaks/codex-hold-to-dictate/) | Supported (Kitty protocol + PipeWire) | Planned | Hold Space to dictate into the Codex CLI composer |
+| [Codex hold-to-dictate](tweaks/codex/hold-to-dictate/) | Supported (Kitty protocol + PipeWire) | Planned | Hold Space to dictate into the Codex CLI composer |
 
 ## Quick start
 
-```bash
+```sh
 git clone https://github.com/tomjseery/agent-tweaks.git
 cd agent-tweaks
-./tweaks/codex-hold-to-dictate/linux/install.sh
+./tweaks/codex/hold-to-dictate/linux/install.sh
 ```
 
 Open a new terminal after installation. Every tweak also includes its own
 requirements, controls, troubleshooting instructions, and uninstaller.
+
+### Already installed on Linux?
+
+Nothing needs to be repeated after a restart. Open a supported terminal and run
+`codex`; the user-level installation, local speech model, and shell hook all
+persist. Internet access is not required for normal dictation.
+
+### Fresh Arch Linux setup
+
+Install the Linux dependencies, then run the quick-start commands above:
+
+```sh
+pkexec pacman -S --needed git python python-vosk pipewire-audio curl unzip
+```
+
+Codex CLI must already be installed. The tweak installer checks everything,
+downloads the small English speech model, and leaves the original CLI available
+as `codex-real`. See the [tweak README](tweaks/codex/hold-to-dictate/) for
+terminal requirements and troubleshooting.
 
 Windows support for hold-to-dictate is scaffolded but not yet implemented. The
 shared Python behavior is already platform-neutral; the native Windows console
@@ -47,17 +66,21 @@ advertised as supported.
 
 ```text
 tweaks/
-└── codex-hold-to-dictate/
-    ├── README.md
-    ├── dictation_core.py
-    ├── linux/
-    ├── tests/
-    └── windows/
+├── codex/
+│   ├── README.md
+│   └── hold-to-dictate/
+│       ├── README.md
+│       ├── dictation_core.py
+│       ├── linux/
+│       ├── tests/
+│       └── windows/
+└── claude/
+    └── README.md
 ```
 
-New tweaks should follow the same feature-first layout. Reusable code belongs
-at the tweak root; operating-system integrations belong in their respective
-platform directories.
+Agents have separate top-level folders. Within each agent, reusable code belongs
+at the individual tweak root and operating-system integrations belong in their
+respective platform directories.
 
 ## Contributing
 

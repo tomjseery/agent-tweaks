@@ -6,8 +6,8 @@ Keep each tweak focused, optional, reversible, and independently documented.
 
 Run the complete test suite from the repository root:
 
-```bash
-python3 -m unittest discover -s tweaks/codex-hold-to-dictate/tests -v
+```sh
+python3 -m unittest discover -s tweaks/codex/hold-to-dictate/tests -v
 ```
 
 For platform-specific changes:

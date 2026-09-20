@@ -40,10 +40,16 @@ Requirements:
 - PipeWire's `pw-cat` command;
 - `curl` and `unzip` when the speech model is not already installed.
 
-From the Agent Tweaks repository root:
+On Arch Linux, install the system dependencies:
 
-```bash
-./tweaks/codex-hold-to-dictate/linux/install.sh
+```sh
+pkexec pacman -S --needed git python python-vosk pipewire-audio curl unzip
+```
+
+Then, from the Agent Tweaks repository root:
+
+```sh
+./tweaks/codex/hold-to-dictate/linux/install.sh
 ```
 
 The installer:
@@ -56,6 +62,10 @@ The installer:
 
 Open a new terminal after installation.
 
+The installation survives logouts and restarts. Once installed, normal use is
+just opening a supported terminal and running `codex`; do not rerun the
+installer after every reboot.
+
 ## Controls
 
 - `codex`: launch with hold-to-dictate.
@@ -66,8 +76,8 @@ Open a new terminal after installation.
 
 ## Uninstall
 
-```bash
-./tweaks/codex-hold-to-dictate/linux/uninstall.sh
+```sh
+./tweaks/codex/hold-to-dictate/linux/uninstall.sh
 ```
 
 The shared speech model is preserved so other local dictation tools can keep
@@ -80,6 +90,6 @@ store them on disk.
 
 ## Test
 
-```bash
-python3 -m unittest discover -s tweaks/codex-hold-to-dictate/tests -v
+```sh
+python3 -m unittest discover -s tweaks/codex/hold-to-dictate/tests -v
 ```
