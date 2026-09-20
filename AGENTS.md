@@ -7,3 +7,4 @@
   model files.
 - Run the relevant unit tests after changing implementation code.
 - Do not mark a platform supported until the feature has been tested there.
+- Register stable tweaks in both root-level installer dispatchers.

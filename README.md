@@ -20,11 +20,26 @@ exactly what it changes.
 ```sh
 git clone https://github.com/tomjseery/agent-tweaks.git
 cd agent-tweaks
-./tweaks/codex/hold-to-dictate/linux/install.sh
+./install.sh
 ```
 
-Open a new terminal after installation. Every tweak also includes its own
-requirements, controls, troubleshooting instructions, and uninstaller.
+The root installer installs all stable tweaks supported on the current
+platform. Open a new terminal afterward. Every tweak also includes its own
+installer, requirements, controls, troubleshooting instructions, and
+uninstaller.
+
+To see or install individual tweaks:
+
+```sh
+./install.sh --list
+./install.sh codex/hold-to-dictate
+```
+
+To remove everything installed by the root installer:
+
+```sh
+./uninstall.sh
+```
 
 ### Already installed on Linux?
 
@@ -65,6 +80,8 @@ advertised as supported.
 ## Repository layout
 
 ```text
+install.sh
+uninstall.sh
 tweaks/
 ├── codex/
 │   ├── README.md

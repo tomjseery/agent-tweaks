@@ -18,5 +18,8 @@ For platform-specific changes:
 4. Update the compatibility table only after the implementation works on that
    platform.
 
+Stable tweaks intended for the default setup must also be registered in the
+root `install.sh` and `uninstall.sh` dispatchers.
+
 Do not commit authentication data, agent histories, personal paths, complete
 user configuration files, downloaded speech models, or generated caches.

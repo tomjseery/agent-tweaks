@@ -22,3 +22,5 @@ jobs:
           tweaks/codex/hold-to-dictate/linux/codex_hold_to_dictate.py
       - name: Test
         run: python -m unittest discover -s tweaks/codex/hold-to-dictate/tests -v
+      - name: Check shell entry points
+        run: bash -n install.sh uninstall.sh tweaks/codex/hold-to-dictate/linux/*.sh
