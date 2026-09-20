@@ -2,9 +2,10 @@
 
 Status: **planned, not yet implemented**.
 
-The Windows backend will reuse the platform-neutral `../dictation_core.py`
-module. Only the console, microphone, process, and installer layers need a
-native implementation.
+The Windows backend will reuse the platform-neutral
+[`dictation_core.py`](../../../shared/codex/hold-to-dictate/dictation_core.py).
+Only the console, microphone, process, and installer layers need a native
+implementation.
 
 The Linux adapter cannot simply be copied to native Windows because it relies
 on POSIX PTYs, Unix signals, PipeWire, and terminal key-release reporting.

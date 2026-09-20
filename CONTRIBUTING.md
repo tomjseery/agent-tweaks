@@ -7,7 +7,7 @@ Keep each tweak focused, optional, reversible, and independently documented.
 Run the complete test suite from the repository root:
 
 ```sh
-python3 -m unittest discover -s tweaks/codex/hold-to-dictate/tests -v
+python3 -m unittest discover -s tweaks/linux/codex/hold-to-dictate/tests -v
 ```
 
 For platform-specific changes:
@@ -19,7 +19,7 @@ For platform-specific changes:
    platform.
 
 Stable tweaks intended for the default setup must also be registered in the
-root `install.sh` and `uninstall.sh` dispatchers.
+root installer and uninstaller dispatchers for their supported platforms.
 
 Do not commit authentication data, agent histories, personal paths, complete
 user configuration files, downloaded speech models, or generated caches.

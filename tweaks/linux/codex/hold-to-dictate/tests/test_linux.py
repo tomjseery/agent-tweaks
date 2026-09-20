@@ -5,9 +5,15 @@ import sys
 import unittest
 
 
-TWEAK_ROOT = pathlib.Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(TWEAK_ROOT))
-sys.path.insert(0, str(TWEAK_ROOT / "linux"))
+LINUX_TWEAK_ROOT = pathlib.Path(__file__).resolve().parents[1]
+SHARED_TWEAK_ROOT = (
+    pathlib.Path(__file__).resolve().parents[4]
+    / "shared"
+    / "codex"
+    / "hold-to-dictate"
+)
+sys.path.insert(0, str(LINUX_TWEAK_ROOT))
+sys.path.insert(0, str(SHARED_TWEAK_ROOT))
 
 from codex_hold_to_dictate import InputNormalizer, OutputModeRewriter
 from dictation_core import HoldSpace, vosk_text

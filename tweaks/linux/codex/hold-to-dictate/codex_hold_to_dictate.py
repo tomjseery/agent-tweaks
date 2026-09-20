@@ -25,9 +25,11 @@ from collections.abc import Callable
 from pathlib import Path
 
 
-TWEAK_ROOT = Path(__file__).resolve().parent.parent
-if (TWEAK_ROOT / "dictation_core.py").is_file():
-    sys.path.insert(0, str(TWEAK_ROOT))
+SHARED_ROOT = (
+    Path(__file__).resolve().parents[3] / "shared" / "codex" / "hold-to-dictate"
+)
+if (SHARED_ROOT / "dictation_core.py").is_file():
+    sys.path.insert(0, str(SHARED_ROOT))
 else:
     # The installer places the platform entry point and shared core together.
     sys.path.insert(0, str(Path(__file__).resolve().parent))

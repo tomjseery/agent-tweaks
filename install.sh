@@ -23,7 +23,7 @@ list_targets() {
 install_target() {
     case "$1" in
         codex/hold-to-dictate)
-            "$repo_root/tweaks/codex/hold-to-dictate/linux/install.sh"
+            "$repo_root/tweaks/linux/codex/hold-to-dictate/install.sh"
             ;;
         *)
             printf 'error: unknown or unsupported target: %s\n' "$1" >&2
